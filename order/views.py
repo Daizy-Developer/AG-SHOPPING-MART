@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
 from cart.cart import Cart
-from .models import OrderItem
+from .models import OrderItem ,Order
 from .forms import OrderCreateForm
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.csrf import csrf_protect
@@ -31,6 +31,14 @@ def order_create(request):
     return render(request, 'order/create.html', {'cart': cart,'form': form})
 
 
-def order(request):
-    
-    return render(request, 'order/orders.html')
+def Orders(request):
+    order_history = Order.objects.filter(Account=request.user) 
+    orders = OrderItem.objects.filter(order__in=order_history)
+        
+    return render(request, 'order/orders.html',{"order_history":order_history,"orders":orders})
+
+# def Orders(request):
+#     order_history = Order.objects.filter(Account=request.user) 
+#     orders =  OrderItem.objects.filter(order=order_history)
+#     print(orders)
+#     return render(request, 'order/orders.html',{"order_history":order_history,"orders":orders})

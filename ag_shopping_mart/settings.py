@@ -142,3 +142,6 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CART_SESSION_ID = 'cart'
+
+EMAIL_HOST_USER = "thesample786@gmail.com"
+EMAIL_HOST_PASSWORD = "lis123456"

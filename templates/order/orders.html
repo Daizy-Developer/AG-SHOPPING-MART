@@ -68,26 +68,40 @@ Orders
                             <tr>
                                 
                                 <th>Order #</th>
-                                <th>Company name</th>
-                                <th>status</th>
+                                <th>Product name</th>
                                 <th>Total</th>
-                                <th>Created</th>
-                                <th></th>
+                                <th>Status</th>
+                                <th>Ordered On</th>
+                            
                             </tr>
                         </thead>
-                        <tbody class="table-body">
-                            
-                                <td>#SO-13487</td>
-                                <td>Gasper Antunes</td>
+                        {%for i in order_history%}
+                        {% with index=forloop.counter %}
+                            <tbody class="table-body">
+                                <td>000{{i.id}}</td>
+                                {%for j in orders%}
+                                    {% if forloop.counter == index %}
+                                        <td>{{j.product}}</td>
+                                        <td>{{j.price}}}</td>
+                                    {% endif %}
+                                {%endfor%}
+                                
                                 <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
+                                
+                                
+                                <td>{{i.created}}</td>
+                               
                                 <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+
                             </tr>
+                            
+                        
                           
                            
                            
                         </tbody>
+                        {% endwith %}
+                        {%endfor%}
                     </table>
                 </div>
             </div>
