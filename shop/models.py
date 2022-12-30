@@ -39,3 +39,28 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=[self.id, self.slug])
 
+class ContactUs(models.Model):
+
+    Name = models.CharField(max_length=60)
+    Subject =  models.CharField(max_length=60)
+    Email = models.CharField(max_length=100)
+    Phone = models.IntegerField()
+    Chat =  models.CharField(max_length=6000)
+    def __str__(self):
+        return self.Name +" "+ str(self.id)
+    
+
+
+class Home_Slider(models.Model):
+
+    Name = models.CharField(max_length=60)
+    image = models.ImageField(upload_to='home/sliders')
+    Link =models.CharField(max_length=600)
+    def __str__(self):
+        return self.Name
+
+class Block_Buster_Deal(models.Model):
+    Item = models.ForeignKey(Product,on_delete=models.CASCADE)
+
+
+    
